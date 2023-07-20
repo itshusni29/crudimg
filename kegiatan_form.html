@@ -1,0 +1,54 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Error 404 {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Page content -->
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+          <div class="col-lg-6">
+              <div class="card shadow">
+                  <div class="card-header bg-primary text-white">
+                      <h2 class="mb-0">{{ form.instance.title|default:"New Kegiatan" }}</h2>
+                  </div>
+                  <div class="card-body">
+                      <form method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <div class="form-group">
+                              <label for="{{ form.title.id_for_label }}">Title:</label>
+                              <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" value="{{ form.title.value|default_if_none:'' }}" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="{{ form.description.id_for_label }}">Description:</label>
+                              <textarea class="form-control" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}" rows="3" required>{{ form.description.value|default_if_none:'' }}</textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="{{ form.image.id_for_label }}">Image:</label>
+                              <input type="file" class="form-control-file" id="{{ form.image.id_for_label }}" name="{{ form.image.name }}" accept="image/*" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="{{ form.date.id_for_label }}">Date:</label>
+                              <input type="date" class="form-control" id="{{ form.date.id_for_label }}" name="{{ form.date.name }}" value="{{ form.date.value|default_if_none:'' }}" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="{{ form.time.id_for_label }}">Time:</label>
+                              <input type="time" class="form-control" id="{{ form.time.id_for_label }}" name="{{ form.time.name }}" value="{{ form.time.value|default_if_none:'' }}" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Save</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  
+  
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

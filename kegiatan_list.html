@@ -1,0 +1,41 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Error 404 {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <h1>Jadwal Kegiatan</h1>
+            <ul class="list-group">
+              {% for kegiatan in kegiatan %}
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-center">
+                          {% if kegiatan.image %}
+                              <img src="{{ kegiatan.image.url }}" alt="{{ kegiatan.title }}" class="img-fluid mr-3" >
+                          {% endif %}
+                          <div>
+                              <h5>{{ kegiatan.title }}</h5>
+                              <p>Date: {{ kegiatan.date }}</p>
+                          </div>
+                      </div>
+                  </li>
+              {% endfor %}
+          </ul>          
+            <a href="{% url 'kegiatan_create' %}" class="btn btn-primary mt-2">Add New Kegiatan</a>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
